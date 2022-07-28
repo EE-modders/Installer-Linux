@@ -1,0 +1,47 @@
+name: Empire Earth Gold Classic
+game_slug: empire-earth-gold-edition
+slug: empire-earth-classic
+runner: wine
+#version: Classic Installer v1.0.3.0
+version: Classic Installer by EEReborn Team
+
+gogid: 1207658777
+gogslug: empire_earth_gold_edition
+
+script:
+  files:
+  - installer: https://storage.empireearth.eu/setup/game/EE_Setup.exe
+
+  game:
+    exe: $GAMEDIR/drive_c/Program Files/Empire Earth/Empire Earth/Empire Earth.exe
+    prefix: $GAMEDIR
+    arch: win32
+
+  wine:
+    #version: lutris-5.2
+    Desktop: true
+    dxvk: false
+    esync: false
+    
+  installer:
+  - task:
+      install_gecko: false
+      install_mono: false
+      name: create_prefix
+      prefix: $GAMEDIR
+  - task:
+      #args: /SILENT /LANG=en /SP- /NOCANCEL /SUPPRESSMSGBOXES /NOGUI /DIR="C:/GOG Games/Empire Earth Gold Edition"
+      executable: installer
+      name: wineexec
+      prefix: $GAMEDIR
+  - task:
+      app: directmusic
+      description: Installing directmusic
+      name: winetricks
+      prefix: $GAMEDIR
+  - task:
+      app: gdiplus
+      description: Installing GDI+
+      name: winetricks
+      prefix: $GAMEDIR
+      
